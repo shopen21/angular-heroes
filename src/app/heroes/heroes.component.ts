@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Hero } from 'app/hero/hero';
-import { HeroService } from 'app/hero/hero.service';
+import { Hero } from '../core/hero';
+import { HeroService } from '../core/hero.service';
 
 @Component({
   selector: 'sho-heroes',

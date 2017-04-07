@@ -1,4 +1,4 @@
-import { Hero } from './hero/hero';
+import { Hero } from './core/hero';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 
 export class InMemoryDataService implements InMemoryDbService {

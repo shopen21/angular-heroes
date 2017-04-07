@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Rx';
 import { Subject } from 'rxjs/subject';
 
 import { HeroSearchService } from './hero-search.service';
-import { Hero } from '../hero/hero';
+import { Hero } from '../core/hero';
 
 @Component({
     selector: 'sho-hero-search',

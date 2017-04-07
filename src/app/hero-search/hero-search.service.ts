@@ -3,7 +3,7 @@ import { Http } from '@angular/http';
 import { Observable } from 'rxjs/observable';
 import 'rxjs/add/operator/map';
 
-import { Hero } from '../hero/hero';
+import { Hero } from '../core/hero';
 
 @Injectable()
 export class HeroSearchService {
