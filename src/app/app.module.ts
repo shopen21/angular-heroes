@@ -1,3 +1,4 @@
+import { HeroSearchComponent } from './hero-search/hero-search.component';
 import { HeroService } from './hero/hero.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -18,7 +19,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     AppComponent,
     HeroDetailComponent,
     HeroesComponent,
-    DashboardComponent
+    DashboardComponent,
+    HeroSearchComponent
   ],
   imports: [
     BrowserModule,
