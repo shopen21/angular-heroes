@@ -1,5 +1,5 @@
 import { Http, Headers } from '@angular/http';
-import { Injectable, OpaqueToken } from '@angular/core';
+import {Injectable, InjectionToken } from '@angular/core';
 import 'rxjs/add/operator/toPromise';
 
 import { Hero } from './hero';
@@ -7,8 +7,8 @@ import { HeroListService } from './hero-list.service';
 import { HeroCrudService } from './hero-crud.service';
 import { Logger } from './logger.service';
 
-export let HERO_LIST_SERVICE = new OpaqueToken('HeroListService');
-export let HERO_CRUD_SERVICE = new OpaqueToken('HeroCrudService');
+export let HERO_LIST_SERVICE = new InjectionToken<HeroListService>('HeroListService');
+export let HERO_CRUD_SERVICE = new InjectionToken<HeroCrudService>('HeroCrudService');
 
 @Injectable()
 export class HeroService implements HeroCrudService, HeroListService {

@@ -4,7 +4,7 @@ import { HeroService } from './hero.service';
 import { Logger } from './logger.service';
 import { FactoryProvider } from '@angular/core';
 
-let heroServiceFactory = (http: Http, logger: Logger) => {
+export let heroServiceFactory = (http: Http, logger: Logger) => {
     return new HeroService(http, logger, false);
 };
 

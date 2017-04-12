@@ -15,7 +15,6 @@ import { Hero } from '../core/hero';
 })
 export class HeroDetailComponent implements OnInit {
   @Input() hero: Hero;
-  @Input() prefix = '';
 
   constructor(
     @Inject(HERO_CRUD_SERVICE) private heroService: HeroCrudService,
