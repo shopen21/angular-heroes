@@ -1,4 +1,4 @@
-import { OnInit, Component } from '@angular/core';
+import { OnInit, Component, Input, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { Subject } from 'rxjs/subject';
 
@@ -12,6 +12,8 @@ import { Hero } from '../core/hero';
     providers: [HeroSearchService]
 })
 export class HeroSearchComponent implements OnInit {
+    @Input() title = '';
+    @Output() heroesFound = new EventEmitter<Hero[]>();
     heroes: Observable<Hero[]>;
     private searchTerms = new Subject<string>();
 
@@ -30,5 +32,6 @@ export class HeroSearchComponent implements OnInit {
                 console.log('Error searching heroes: ', error.message || error);
                 return Observable.of<Hero[]>([]);
             });
+        this.heroes.subscribe(heroes => this.heroesFound.emit(heroes));
     }
 }

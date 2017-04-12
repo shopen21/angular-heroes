@@ -1,10 +1,12 @@
 <h3>Top Heroes</h3>
 <div class="grid grid-pad">
-    <a class="col-1-4" *ngFor="let hero of heroes"
-        [routerLink]="['/detail', hero.id]">
+    <a class="col-1-4" *ngFor="let hero of heroes" [routerLink]="['/detail', hero.id]" (mouseover)="highlightHero(hero)" (mouseleave)="highlightHero(null)">
         <div class="module hero">
             <h4>{{hero.name}}</h4>
         </div>
     </a>
 </div>
-<sho-hero-search></sho-hero-search>
+<sho-hero-search title="Search{{highlightedHero ? ' ' + highlightedHero.name : ''}}:" (heroesFound)="heroesCount = $event.length; foundHeroes = $event"></sho-hero-search>
+
+<span>{{heroesCount}}</span>
+<p><span *ngFor="let hero of foundHeroes; let heroIndex = index; let lastHero = last">{{hero.name}}<ng-container *ngIf="!lastHero"> | </ng-container></span></p>

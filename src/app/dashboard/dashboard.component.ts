@@ -1,21 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 
 import { Hero } from '../core/hero';
-import { HeroService } from '../core/hero.service';
+import { HeroListService } from '../core/hero-list.service';
+import { HERO_LIST_SERVICE } from '../core/hero.service';
 
 @Component({
     selector: 'sho-dashboard',
     templateUrl: './dashboard.component.html',
-    styleUrls: ['./dashboard.component.css'],
-    providers: [HeroService]
+    styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-    private heroes: Hero[];
+    heroes: Hero[];
+    highlightedHero: Hero = null;
 
-    constructor(private heroService: HeroService) { }
+    constructor( @Inject(HERO_LIST_SERVICE) private heroService: HeroListService) { }
 
     ngOnInit(): void {
         this.initializeTopHeroes();
+    }
+
+    highlightHero(hero?: Hero): void {
+        this.highlightedHero = hero;
     }
 
     private initializeTopHeroes(): void {

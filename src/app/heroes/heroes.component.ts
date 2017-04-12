@@ -1,20 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Hero } from '../core/hero';
-import { HeroService } from '../core/hero.service';
+import { HeroService, HERO_LIST_SERVICE } from '../core/hero.service';
+import { HeroListService } from '../core/hero-list.service';
 
 @Component({
   selector: 'sho-heroes',
   templateUrl: './heroes.component.html',
-  styleUrls: ['./heroes.component.css'],
-  providers: [HeroService]
+  styleUrls: ['./heroes.component.css']
 })
 export class HeroesComponent implements OnInit {
   heroes: Hero[] = null;
   selectedHero: Hero = null;
 
-  constructor(private heroService: HeroService, private router: Router) { }
+  constructor(@Inject(HERO_LIST_SERVICE) private heroService: HeroListService, private router: Router) { }
 
   ngOnInit() {
     this.initializeHeroes();

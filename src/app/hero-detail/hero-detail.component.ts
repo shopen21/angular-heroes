@@ -1,22 +1,24 @@
+import { Component, Input, OnInit, Inject } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Params } from '@angular/router';
 
-import { HeroService } from '../core/hero.service';
-import { Component, Input, OnInit } from '@angular/core';
-import { Hero } from '../core/hero';
 import 'rxjs/add/operator/switchMap';
+
+import { HeroCrudService } from '../core/hero-crud.service';
+import { HERO_CRUD_SERVICE } from '../core/hero.service';
+import { Hero } from '../core/hero';
 
 @Component({
   selector: 'sho-hero-detail',
   templateUrl: './hero-detail.component.html',
   styleUrls: ['./hero-detail.component.css'],
-  providers: [HeroService]
 })
 export class HeroDetailComponent implements OnInit {
   @Input() hero: Hero;
+  @Input() prefix = '';
 
   constructor(
-    private heroService: HeroService,
+    @Inject(HERO_CRUD_SERVICE) private heroService: HeroCrudService,
     private location: Location,
     private route: ActivatedRoute) {
   }

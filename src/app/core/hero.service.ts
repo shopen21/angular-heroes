@@ -1,15 +1,23 @@
 import { Http, Headers } from '@angular/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OpaqueToken } from '@angular/core';
 import 'rxjs/add/operator/toPromise';
 
 import { Hero } from './hero';
+import { HeroListService } from './hero-list.service';
+import { HeroCrudService } from './hero-crud.service';
+import { Logger } from './logger.service';
+
+export let HERO_LIST_SERVICE = new OpaqueToken('HeroListService');
+export let HERO_CRUD_SERVICE = new OpaqueToken('HeroCrudService');
 
 @Injectable()
-export class HeroService {
+export class HeroService implements HeroCrudService, HeroListService {
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private heroesUrl = 'api/heroes';
 
-  constructor(private http: Http) { }
+  constructor(private http: Http, private logger: Logger, private isAuthorized: boolean) {
+    this.logger.log('HeroService created');
+   }
 
   public update(hero: Hero): Promise<Hero> {
     const url = `${this.heroesUrl}/${hero.id}`;
@@ -43,7 +51,10 @@ export class HeroService {
   }
 
   public getHeroes(): Promise<Hero[]> {
-    return this.http.get(this.heroesUrl).toPromise().then(response => response.json().data as Hero[]).catch(this.handleError);
+    this.logger.log(`HeroService.getHeroes ${this.isAuthorized ? 'authorized' : 'guest'}`);
+    return this.http.get(this.heroesUrl).toPromise()
+    .then(response => (response.json().data as Hero[]).filter(hero => !hero.isSecret || this.isAuthorized))
+    .catch(this.handleError);
   }
 
   public getHeroesSlowly(): Promise<Hero[]> {

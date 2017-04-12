@@ -3,9 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-import { HeroService } from './hero.service';
+import { HeroService, HERO_CRUD_SERVICE, HERO_LIST_SERVICE } from './hero.service';
+import { HeroCrudService } from './hero-crud.service';
+import { HeroListService } from './hero-list.service';
 import { Hero } from './hero';
-import { throwIfAlreadyLoaded } from "./module-import-guard";
+import { throwIfAlreadyLoaded } from './module-import-guard';
+import { Logger } from './logger.service';
+import { heroServiceProvider } from './hero.service.provider';
 
 @NgModule({
     imports: [
@@ -19,7 +23,12 @@ import { throwIfAlreadyLoaded } from "./module-import-guard";
         HttpModule
     ],
     declarations: [],
-    providers: [HeroService],
+    providers: [
+        heroServiceProvider,
+        { provide: HERO_CRUD_SERVICE, useExisting: HeroService },
+        { provide: HERO_LIST_SERVICE, useExisting: HeroService },
+        Logger
+    ],
 })
 export class CoreModule {
     constructor( @Optional() @SkipSelf() parentModule: CoreModule) {
