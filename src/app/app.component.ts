@@ -1,13 +1,13 @@
-import { Component } from '@angular/core';
-
-import { Hero } from './core/hero';
-import { HeroService } from './core/hero.service';
+import {Component, OnInit} from '@angular/core';
+import {apiConfig} from "../environments/environment";
 
 @Component({
   selector: 'sho-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
-  title = 'Tour of Heroes';
+export class AppComponent implements OnInit {
+  ngOnInit() {
+    console.log('API URL:' + apiConfig.url);
+  }
 }
