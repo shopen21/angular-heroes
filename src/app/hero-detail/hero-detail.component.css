@@ -27,3 +27,11 @@ button:disabled {
   color: #ccc;
   cursor: auto;
 }
+
+form fieldset {
+  border: none;
+}
+
+form label {
+  display: block;
+}

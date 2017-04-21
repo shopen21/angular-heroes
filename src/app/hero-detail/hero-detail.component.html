@@ -3,10 +3,45 @@
   <div>
     <label>id: </label>{{hero.id}}
   </div>
-  <div>
-    <label for="name-input">name: </label>
-    <input id="name-input" type="text" placeholder="Hero Name" [(ngModel)]="hero.name">
-  </div>
-  <button (click)="save()">Save</button>
-  <button (click)="goBack()">Back</button>
+  <form [formGroup]="heroForm" novalidate (ngSubmit)="save()">
+    <button type="submit" [disabled]="heroForm.pristine">Save</button>
+    <button type="reset" [disabled]="heroForm.pristine" (click)="revert()">Discard</button>
+    <label for="name-input">Name:
+      <input id="name-input" type="text" placeholder="Hero Name" formControlName="name">
+    </label>
+    <div formArrayName="addresses">
+      Addresses:
+      <fieldset [formGroupName]="index" title="Address"
+          *ngFor="let _ of addressFormArray.controls; let index=index">
+        <h4>Address #{{index + 1}} <button type="button" (click)="removeAddress(index)">Remove</button></h4>
+
+        <label for="country-input">Country:
+          <input id="country-input" type="text" placeholder="Country" formControlName="country">
+        </label>
+        <label for="state-input">
+          <select id="state-input" formControlName="state">
+            <option *ngFor="let state of states" [value]="state">{{state}}</option>
+          </select>
+        </label>
+        <label for="city-input">City:
+          <input id="city-input" type="text" placeholder="City" formControlName="city">
+        </label>
+        <label for="street-input">Street:
+          <input id="street-input" type="text" placeholder="Street" formControlName="street">
+        </label>
+        <label for="zip-input">Zip:
+          <input id="zip-input" type="text" placeholder="Zip" formControlName="zip">
+        </label>
+      </fieldset>
+      <button type="button" (click)="addAddress()">Add address</button>
+    </div>
+
+  </form>
+
 </div>
+
+<button type="button" (click)="goBack()">Back</button>
+
+
+<pre>Form value: {{heroForm.value | json}}</pre>
+<pre>Form status: {{heroForm.status | json}}</pre>
