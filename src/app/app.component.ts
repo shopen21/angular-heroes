@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {apiConfig} from "../environments/environment";
+import {apiConfig} from 'environments/environment';
 
 @Component({
   selector: 'sho-root',

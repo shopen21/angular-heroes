@@ -4,9 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { HeroService, HERO_CRUD_SERVICE, HERO_LIST_SERVICE } from './hero.service';
-import { HeroCrudService } from './hero-crud.service';
-import { HeroListService } from './hero-list.service';
-import { Hero } from './hero';
 import { throwIfAlreadyLoaded } from './module-import-guard';
 import { Logger } from './logger.service';
 import { heroServiceProvider } from './hero.service.provider';

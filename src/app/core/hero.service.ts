@@ -36,7 +36,7 @@ export class HeroService implements HeroCrudService, HeroListService {
       .catch(this.handleError);
   }
 
-  public delete(id: number): Promise<void> {
+  public remove(id: number): Promise<void> {
     const url = `${this.heroesUrl}/${id}`;
     return this.http.delete(url, { headers: this.headers }).toPromise().then(() => null).catch(this.handleError);
   }
@@ -64,7 +64,7 @@ export class HeroService implements HeroCrudService, HeroListService {
   }
 
   private handleError(error: any): Promise<any> {
-    console.error('An error occured', error);
+    console.error('An error happened', error);
     return Promise.reject(error.message || error);
   }
 }

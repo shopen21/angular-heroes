@@ -1,8 +1,10 @@
 <h2>All heroes</h2>
 
 <!--Add new: -->
-<div><label for="heroName">Hero name:</label> <input #heroName type="text">
-<button (click)="add(heroName.value); heroName.value=''">Add</button>
+<div>
+  <label for="hero-name">Hero name:</label>
+  <input id="hero-name" #heroName type="text">
+  <button (click)="add(heroName.value); heroName.value=''">Add</button>
 </div>
 
 
@@ -10,8 +12,8 @@
 <ul class="heroes">
   <li *ngFor="let hero of heroes" [class.selected]="hero === selectedHero" (click)="select(hero)">
     <span class="badge">{{hero.id}}</span>
-     <span>{{hero.name}}</span>
-    <button class="delete" (click)="delete(hero); $event.stopPropagation()">x</button>
+    <span>{{hero.name}}</span>
+    <button class="delete" (click)="remove(hero); $event.stopPropagation()">x</button>
   </li>
 </ul>
 <div *ngIf="selectedHero">

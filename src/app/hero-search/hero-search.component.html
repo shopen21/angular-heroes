@@ -1,6 +1,6 @@
 <div id="search-component">
     <h4>{{title}}</h4>
-    <input #searchBox type="text" id="search-box" (keyup)="search(searchBox.value)">
+    <input #searchBox type="text" id="search-box" (keyup)="search(searchBox.value)" title="Search for hero">
     <div>
         <div *ngFor="let hero of heroes | async" [routerLink]="['/detail', hero.id]" class="search-result">
             {{hero.name}}

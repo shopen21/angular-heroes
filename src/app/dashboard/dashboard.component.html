@@ -9,4 +9,4 @@
 <sho-hero-search title="Search{{highlightedHero ? ' ' + highlightedHero.name : ''}}:" (heroesFound)="heroesCount = $event.length; foundHeroes = $event"></sho-hero-search>
 
 <span>{{heroesCount}}</span>
-<p><span *ngFor="let hero of foundHeroes; let heroIndex = index; let lastHero = last">{{hero.name}}<ng-container *ngIf="!lastHero"> | </ng-container></span></p>
+<p><span *ngFor="let hero of foundHeroes; let lastHero = last">{{hero.name}}<ng-container *ngIf="!lastHero"> | </ng-container></span></p>

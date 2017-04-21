@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Hero } from '../core/hero';
-import { HeroService, HERO_LIST_SERVICE } from '../core/hero.service';
+import { HERO_LIST_SERVICE } from '../core/hero.service';
 import { HeroListService } from '../core/hero-list.service';
 
 @Component({
@@ -24,8 +24,8 @@ export class HeroesComponent implements OnInit {
     this.selectedHero = hero;
   }
 
-  goToDetail(): void {
-    this.router.navigate(['/detail', this.selectedHero.id]);
+  goToDetail(): any {
+    return this.router.navigate(['/detail', this.selectedHero.id]);
   }
 
   add(name: string): void {
@@ -34,8 +34,8 @@ export class HeroesComponent implements OnInit {
     this.heroService.create(name).then(hero => { this.heroes.push(hero); this.selectedHero = null; });
   }
 
-  delete(hero: Hero): void {
-    this.heroService.delete(hero.id).then(() => this.removeHeroFromList(hero));
+  remove(hero: Hero): void {
+    this.heroService.remove(hero.id).then(() => this.removeHeroFromList(hero));
   }
 
   private removeHeroFromList(hero: Hero): void {

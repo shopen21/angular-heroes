@@ -1,5 +1,3 @@
-import { OpaqueToken } from '@angular/core';
-
 import { Hero } from './hero';
 
 export interface HeroCrudService {
